@@ -1,0 +1,27 @@
+{
+  "name": "agentsmd-lint",
+  "version": "0.3.0",
+  "description": "AGENTS.md에 적힌 명령·경로가 실제 리포와 맞는지, 위험한 지시가 없는지 검사하는 CLI",
+  "keywords": ["agents.md", "ai-agent", "lint", "cli", "documentation", "devtools"],
+  "type": "module",
+  "bin": { "agentsmd-lint": "bin/agentsmd-lint.js" },
+  "exports": { ".": "./src/lint.js" },
+  "files": ["bin/", "src/", "README.md", "LICENSE"],
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "lint": "eslint .",
+    "typecheck": "tsc -p jsconfig.json",
+    "test": "node --test test/*.test.js",
+    "check": "npm run lint && npm run typecheck && npm test && npm run self-check",
+    "self-check": "node bin/agentsmd-lint.js .",
+    "demo": "node bin/agentsmd-lint.js fixtures/demo; test $? -eq 1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@types/node": "^22.0.0",
+    "eslint": "^9.39.5",
+    "globals": "^17.14.0",
+    "typescript": "^5.6.0"
+  },
+  "license": "MIT"
+}
